@@ -8,7 +8,7 @@
       "enabled": false
     },
     "lcdClients": {
-      "enabled": true
+      "enabled": false
     },
     "rpcClients": {
       "enabled": true
