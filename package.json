@@ -1,6 +1,6 @@
 {
   "name": "@mhagel/cosmon",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Cosmos SDK TS modules",
   "author": "Mark Hagelberg <mark.hagelberg@gmail.com>",
   "homepage": "https://github.com/mhagel/cosmon#readme",
@@ -79,6 +79,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.19.4",
+    "@osmonauts/lcd": "^0.10.0",
     "protobufjs": "^6.11.2"
   }
 }
