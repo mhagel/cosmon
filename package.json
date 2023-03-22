@@ -1,6 +1,6 @@
 {
   "name": "@mhagel/cosmon",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Cosmos SDK TS modules",
   "author": "Mark Hagelberg <mark.hagelberg@gmail.com>",
   "homepage": "https://github.com/mhagel/cosmon#readme",
