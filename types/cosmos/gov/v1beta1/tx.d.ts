@@ -1,8 +1,8 @@
 import { Any, AnySDKType } from "../../../google/protobuf/any";
 import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
-import { VoteOption, WeightedVoteOption, WeightedVoteOptionSDKType } from "./gov";
+import { VoteOption, VoteOptionSDKType, WeightedVoteOption, WeightedVoteOptionSDKType } from "./gov";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "../../../helpers";
+import { Long } from "../../../helpers";
 /**
  * MsgSubmitProposal defines an sdk.Msg type that supports submitting arbitrary
  * proposal Content.
@@ -39,7 +39,7 @@ export interface MsgVote {
 export interface MsgVoteSDKType {
     proposal_id: Long;
     voter: string;
-    option: VoteOption;
+    option: VoteOptionSDKType;
 }
 /** MsgVoteResponse defines the Msg/Vote response type. */
 export interface MsgVoteResponse {
@@ -102,40 +102,56 @@ export interface MsgDepositResponseSDKType {
 export declare const MsgSubmitProposal: {
     encode(message: MsgSubmitProposal, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitProposal;
-    fromPartial(object: DeepPartial<MsgSubmitProposal>): MsgSubmitProposal;
+    fromJSON(object: any): MsgSubmitProposal;
+    toJSON(message: MsgSubmitProposal): unknown;
+    fromPartial(object: Partial<MsgSubmitProposal>): MsgSubmitProposal;
 };
 export declare const MsgSubmitProposalResponse: {
     encode(message: MsgSubmitProposalResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgSubmitProposalResponse;
-    fromPartial(object: DeepPartial<MsgSubmitProposalResponse>): MsgSubmitProposalResponse;
+    fromJSON(object: any): MsgSubmitProposalResponse;
+    toJSON(message: MsgSubmitProposalResponse): unknown;
+    fromPartial(object: Partial<MsgSubmitProposalResponse>): MsgSubmitProposalResponse;
 };
 export declare const MsgVote: {
     encode(message: MsgVote, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgVote;
-    fromPartial(object: DeepPartial<MsgVote>): MsgVote;
+    fromJSON(object: any): MsgVote;
+    toJSON(message: MsgVote): unknown;
+    fromPartial(object: Partial<MsgVote>): MsgVote;
 };
 export declare const MsgVoteResponse: {
     encode(_: MsgVoteResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgVoteResponse;
-    fromPartial(_: DeepPartial<MsgVoteResponse>): MsgVoteResponse;
+    fromJSON(_: any): MsgVoteResponse;
+    toJSON(_: MsgVoteResponse): unknown;
+    fromPartial(_: Partial<MsgVoteResponse>): MsgVoteResponse;
 };
 export declare const MsgVoteWeighted: {
     encode(message: MsgVoteWeighted, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgVoteWeighted;
-    fromPartial(object: DeepPartial<MsgVoteWeighted>): MsgVoteWeighted;
+    fromJSON(object: any): MsgVoteWeighted;
+    toJSON(message: MsgVoteWeighted): unknown;
+    fromPartial(object: Partial<MsgVoteWeighted>): MsgVoteWeighted;
 };
 export declare const MsgVoteWeightedResponse: {
     encode(_: MsgVoteWeightedResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgVoteWeightedResponse;
-    fromPartial(_: DeepPartial<MsgVoteWeightedResponse>): MsgVoteWeightedResponse;
+    fromJSON(_: any): MsgVoteWeightedResponse;
+    toJSON(_: MsgVoteWeightedResponse): unknown;
+    fromPartial(_: Partial<MsgVoteWeightedResponse>): MsgVoteWeightedResponse;
 };
 export declare const MsgDeposit: {
     encode(message: MsgDeposit, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeposit;
-    fromPartial(object: DeepPartial<MsgDeposit>): MsgDeposit;
+    fromJSON(object: any): MsgDeposit;
+    toJSON(message: MsgDeposit): unknown;
+    fromPartial(object: Partial<MsgDeposit>): MsgDeposit;
 };
 export declare const MsgDepositResponse: {
     encode(_: MsgDepositResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgDepositResponse;
-    fromPartial(_: DeepPartial<MsgDepositResponse>): MsgDepositResponse;
+    fromJSON(_: any): MsgDepositResponse;
+    toJSON(_: MsgDepositResponse): unknown;
+    fromPartial(_: Partial<MsgDepositResponse>): MsgDepositResponse;
 };

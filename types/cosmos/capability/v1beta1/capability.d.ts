@@ -1,5 +1,5 @@
-import { Long, DeepPartial } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
+import { Long } from "../../../helpers";
 /**
  * Capability defines an implementation of an object capability. The index
  * provided to a Capability must be globally unique.
@@ -47,15 +47,21 @@ export interface CapabilityOwnersSDKType {
 export declare const Capability: {
     encode(message: Capability, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): Capability;
-    fromPartial(object: DeepPartial<Capability>): Capability;
+    fromJSON(object: any): Capability;
+    toJSON(message: Capability): unknown;
+    fromPartial(object: Partial<Capability>): Capability;
 };
 export declare const Owner: {
     encode(message: Owner, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): Owner;
-    fromPartial(object: DeepPartial<Owner>): Owner;
+    fromJSON(object: any): Owner;
+    toJSON(message: Owner): unknown;
+    fromPartial(object: Partial<Owner>): Owner;
 };
 export declare const CapabilityOwners: {
     encode(message: CapabilityOwners, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): CapabilityOwners;
-    fromPartial(object: DeepPartial<CapabilityOwners>): CapabilityOwners;
+    fromJSON(object: any): CapabilityOwners;
+    toJSON(message: CapabilityOwners): unknown;
+    fromPartial(object: Partial<CapabilityOwners>): CapabilityOwners;
 };

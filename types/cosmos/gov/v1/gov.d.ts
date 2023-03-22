@@ -1,8 +1,9 @@
 import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
 import { Any, AnySDKType } from "../../../google/protobuf/any";
+import { Timestamp, TimestampSDKType } from "../../../google/protobuf/timestamp";
 import { Duration, DurationSDKType } from "../../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "../../../helpers";
+import { Long } from "../../../helpers";
 /** VoteOption enumerates the valid vote options for a given governance proposal. */
 export declare enum VoteOption {
     /** VOTE_OPTION_UNSPECIFIED - VOTE_OPTION_UNSPECIFIED defines a no-op vote option. */
@@ -17,7 +18,20 @@ export declare enum VoteOption {
     VOTE_OPTION_NO_WITH_VETO = 4,
     UNRECOGNIZED = -1
 }
-export declare const VoteOptionSDKType: typeof VoteOption;
+/** VoteOption enumerates the valid vote options for a given governance proposal. */
+export declare enum VoteOptionSDKType {
+    /** VOTE_OPTION_UNSPECIFIED - VOTE_OPTION_UNSPECIFIED defines a no-op vote option. */
+    VOTE_OPTION_UNSPECIFIED = 0,
+    /** VOTE_OPTION_YES - VOTE_OPTION_YES defines a yes vote option. */
+    VOTE_OPTION_YES = 1,
+    /** VOTE_OPTION_ABSTAIN - VOTE_OPTION_ABSTAIN defines an abstain vote option. */
+    VOTE_OPTION_ABSTAIN = 2,
+    /** VOTE_OPTION_NO - VOTE_OPTION_NO defines a no vote option. */
+    VOTE_OPTION_NO = 3,
+    /** VOTE_OPTION_NO_WITH_VETO - VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option. */
+    VOTE_OPTION_NO_WITH_VETO = 4,
+    UNRECOGNIZED = -1
+}
 export declare function voteOptionFromJSON(object: any): VoteOption;
 export declare function voteOptionToJSON(object: VoteOption): string;
 /** ProposalStatus enumerates the valid statuses of a proposal. */
@@ -51,7 +65,37 @@ export declare enum ProposalStatus {
     PROPOSAL_STATUS_FAILED = 5,
     UNRECOGNIZED = -1
 }
-export declare const ProposalStatusSDKType: typeof ProposalStatus;
+/** ProposalStatus enumerates the valid statuses of a proposal. */
+export declare enum ProposalStatusSDKType {
+    /** PROPOSAL_STATUS_UNSPECIFIED - PROPOSAL_STATUS_UNSPECIFIED defines the default propopsal status. */
+    PROPOSAL_STATUS_UNSPECIFIED = 0,
+    /**
+     * PROPOSAL_STATUS_DEPOSIT_PERIOD - PROPOSAL_STATUS_DEPOSIT_PERIOD defines a proposal status during the deposit
+     * period.
+     */
+    PROPOSAL_STATUS_DEPOSIT_PERIOD = 1,
+    /**
+     * PROPOSAL_STATUS_VOTING_PERIOD - PROPOSAL_STATUS_VOTING_PERIOD defines a proposal status during the voting
+     * period.
+     */
+    PROPOSAL_STATUS_VOTING_PERIOD = 2,
+    /**
+     * PROPOSAL_STATUS_PASSED - PROPOSAL_STATUS_PASSED defines a proposal status of a proposal that has
+     * passed.
+     */
+    PROPOSAL_STATUS_PASSED = 3,
+    /**
+     * PROPOSAL_STATUS_REJECTED - PROPOSAL_STATUS_REJECTED defines a proposal status of a proposal that has
+     * been rejected.
+     */
+    PROPOSAL_STATUS_REJECTED = 4,
+    /**
+     * PROPOSAL_STATUS_FAILED - PROPOSAL_STATUS_FAILED defines a proposal status of a proposal that has
+     * failed.
+     */
+    PROPOSAL_STATUS_FAILED = 5,
+    UNRECOGNIZED = -1
+}
 export declare function proposalStatusFromJSON(object: any): ProposalStatus;
 export declare function proposalStatusToJSON(object: ProposalStatus): string;
 /** WeightedVoteOption defines a unit of vote for vote split. */
@@ -61,7 +105,7 @@ export interface WeightedVoteOption {
 }
 /** WeightedVoteOption defines a unit of vote for vote split. */
 export interface WeightedVoteOptionSDKType {
-    option: VoteOption;
+    option: VoteOptionSDKType;
     weight: string;
 }
 /**
@@ -93,11 +137,11 @@ export interface Proposal {
      * proposal's voting period has ended.
      */
     finalTallyResult?: TallyResult;
-    submitTime?: Date;
-    depositEndTime?: Date;
+    submitTime?: Timestamp;
+    depositEndTime?: Timestamp;
     totalDeposit: Coin[];
-    votingStartTime?: Date;
-    votingEndTime?: Date;
+    votingStartTime?: Timestamp;
+    votingEndTime?: Timestamp;
     /** metadata is any arbitrary metadata attached to the proposal. */
     metadata: string;
 }
@@ -105,13 +149,19 @@ export interface Proposal {
 export interface ProposalSDKType {
     id: Long;
     messages: AnySDKType[];
-    status: ProposalStatus;
+    status: ProposalStatusSDKType;
+    /**
+     * final_tally_result is the final tally result of the proposal. When
+     * querying a proposal via gRPC, this field is not populated until the
+     * proposal's voting period has ended.
+     */
     final_tally_result?: TallyResultSDKType;
-    submit_time?: Date;
-    deposit_end_time?: Date;
+    submit_time?: TimestampSDKType;
+    deposit_end_time?: TimestampSDKType;
     total_deposit: CoinSDKType[];
-    voting_start_time?: Date;
-    voting_end_time?: Date;
+    voting_start_time?: TimestampSDKType;
+    voting_end_time?: TimestampSDKType;
+    /** metadata is any arbitrary metadata attached to the proposal. */
     metadata: string;
 }
 /** TallyResult defines a standard tally for a governance proposal. */
@@ -147,6 +197,7 @@ export interface VoteSDKType {
     proposal_id: Long;
     voter: string;
     options: WeightedVoteOptionSDKType[];
+    /** metadata is any  arbitrary metadata to attached to the vote. */
     metadata: string;
 }
 /** DepositParams defines the params for deposits on governance proposals. */
@@ -161,7 +212,12 @@ export interface DepositParams {
 }
 /** DepositParams defines the params for deposits on governance proposals. */
 export interface DepositParamsSDKType {
+    /** Minimum deposit for a proposal to enter voting period. */
     min_deposit: CoinSDKType[];
+    /**
+     * Maximum period for Atom holders to deposit on a proposal. Initial value: 2
+     *  months.
+     */
     max_deposit_period?: DurationSDKType;
 }
 /** VotingParams defines the params for voting on governance proposals. */
@@ -171,6 +227,7 @@ export interface VotingParams {
 }
 /** VotingParams defines the params for voting on governance proposals. */
 export interface VotingParamsSDKType {
+    /** Length of the voting period. */
     voting_period?: DurationSDKType;
 }
 /** TallyParams defines the params for tallying votes on governance proposals. */
@@ -190,47 +247,72 @@ export interface TallyParams {
 }
 /** TallyParams defines the params for tallying votes on governance proposals. */
 export interface TallyParamsSDKType {
+    /**
+     * Minimum percentage of total stake needed to vote for a result to be
+     *  considered valid.
+     */
     quorum: string;
+    /** Minimum proportion of Yes votes for proposal to pass. Default value: 0.5. */
     threshold: string;
+    /**
+     * Minimum value of Veto votes to Total votes ratio for proposal to be
+     *  vetoed. Default value: 1/3.
+     */
     veto_threshold: string;
 }
 export declare const WeightedVoteOption: {
     encode(message: WeightedVoteOption, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): WeightedVoteOption;
-    fromPartial(object: DeepPartial<WeightedVoteOption>): WeightedVoteOption;
+    fromJSON(object: any): WeightedVoteOption;
+    toJSON(message: WeightedVoteOption): unknown;
+    fromPartial(object: Partial<WeightedVoteOption>): WeightedVoteOption;
 };
 export declare const Deposit: {
     encode(message: Deposit, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): Deposit;
-    fromPartial(object: DeepPartial<Deposit>): Deposit;
+    fromJSON(object: any): Deposit;
+    toJSON(message: Deposit): unknown;
+    fromPartial(object: Partial<Deposit>): Deposit;
 };
 export declare const Proposal: {
     encode(message: Proposal, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): Proposal;
-    fromPartial(object: DeepPartial<Proposal>): Proposal;
+    fromJSON(object: any): Proposal;
+    toJSON(message: Proposal): unknown;
+    fromPartial(object: Partial<Proposal>): Proposal;
 };
 export declare const TallyResult: {
     encode(message: TallyResult, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): TallyResult;
-    fromPartial(object: DeepPartial<TallyResult>): TallyResult;
+    fromJSON(object: any): TallyResult;
+    toJSON(message: TallyResult): unknown;
+    fromPartial(object: Partial<TallyResult>): TallyResult;
 };
 export declare const Vote: {
     encode(message: Vote, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): Vote;
-    fromPartial(object: DeepPartial<Vote>): Vote;
+    fromJSON(object: any): Vote;
+    toJSON(message: Vote): unknown;
+    fromPartial(object: Partial<Vote>): Vote;
 };
 export declare const DepositParams: {
     encode(message: DepositParams, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): DepositParams;
-    fromPartial(object: DeepPartial<DepositParams>): DepositParams;
+    fromJSON(object: any): DepositParams;
+    toJSON(message: DepositParams): unknown;
+    fromPartial(object: Partial<DepositParams>): DepositParams;
 };
 export declare const VotingParams: {
     encode(message: VotingParams, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): VotingParams;
-    fromPartial(object: DeepPartial<VotingParams>): VotingParams;
+    fromJSON(object: any): VotingParams;
+    toJSON(message: VotingParams): unknown;
+    fromPartial(object: Partial<VotingParams>): VotingParams;
 };
 export declare const TallyParams: {
     encode(message: TallyParams, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): TallyParams;
-    fromPartial(object: DeepPartial<TallyParams>): TallyParams;
+    fromJSON(object: any): TallyParams;
+    toJSON(message: TallyParams): unknown;
+    fromPartial(object: Partial<TallyParams>): TallyParams;
 };
