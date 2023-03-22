@@ -89,26 +89,45 @@ import * as _90 from "./upgrade/v1beta1/tx";
 import * as _91 from "./upgrade/v1beta1/upgrade";
 import * as _92 from "./vesting/v1beta1/tx";
 import * as _93 from "./vesting/v1beta1/vesting";
-import * as _113 from "./auth/v1beta1/query.lcd";
-import * as _114 from "./authz/v1beta1/query.lcd";
-import * as _115 from "./bank/v1beta1/query.lcd";
-import * as _116 from "./base/tendermint/v1beta1/query.lcd";
-import * as _117 from "./distribution/v1beta1/query.lcd";
-import * as _118 from "./evidence/v1beta1/query.lcd";
-import * as _119 from "./feegrant/v1beta1/query.lcd";
-import * as _120 from "./gov/v1/query.lcd";
-import * as _121 from "./gov/v1beta1/query.lcd";
-import * as _122 from "./group/v1/query.lcd";
-import * as _123 from "./mint/v1beta1/query.lcd";
-import * as _124 from "./nft/v1beta1/query.lcd";
-import * as _125 from "./params/v1beta1/query.lcd";
-import * as _126 from "./slashing/v1beta1/query.lcd";
-import * as _127 from "./staking/v1beta1/query.lcd";
-import * as _128 from "./tx/v1beta1/service.lcd";
-import * as _129 from "./upgrade/v1beta1/query.lcd";
+import * as _113 from "./app/v1alpha1/query.rpc.Query";
+import * as _114 from "./auth/v1beta1/query.rpc.Query";
+import * as _115 from "./authz/v1beta1/query.rpc.Query";
+import * as _116 from "./bank/v1beta1/query.rpc.Query";
+import * as _117 from "./base/tendermint/v1beta1/query.rpc.Service";
+import * as _118 from "./distribution/v1beta1/query.rpc.Query";
+import * as _119 from "./evidence/v1beta1/query.rpc.Query";
+import * as _120 from "./feegrant/v1beta1/query.rpc.Query";
+import * as _121 from "./gov/v1/query.rpc.Query";
+import * as _122 from "./gov/v1beta1/query.rpc.Query";
+import * as _123 from "./group/v1/query.rpc.Query";
+import * as _124 from "./mint/v1beta1/query.rpc.Query";
+import * as _125 from "./nft/v1beta1/query.rpc.Query";
+import * as _126 from "./params/v1beta1/query.rpc.Query";
+import * as _127 from "./slashing/v1beta1/query.rpc.Query";
+import * as _128 from "./staking/v1beta1/query.rpc.Query";
+import * as _129 from "./tx/v1beta1/service.rpc.Service";
+import * as _130 from "./upgrade/v1beta1/query.rpc.Query";
+import * as _131 from "./authz/v1beta1/tx.rpc.msg";
+import * as _132 from "./bank/v1beta1/tx.rpc.msg";
+import * as _133 from "./crisis/v1beta1/tx.rpc.msg";
+import * as _134 from "./distribution/v1beta1/tx.rpc.msg";
+import * as _135 from "./evidence/v1beta1/tx.rpc.msg";
+import * as _136 from "./feegrant/v1beta1/tx.rpc.msg";
+import * as _137 from "./gov/v1/tx.rpc.msg";
+import * as _138 from "./gov/v1beta1/tx.rpc.msg";
+import * as _139 from "./group/v1/tx.rpc.msg";
+import * as _140 from "./nft/v1beta1/tx.rpc.msg";
+import * as _141 from "./slashing/v1beta1/tx.rpc.msg";
+import * as _142 from "./staking/v1beta1/tx.rpc.msg";
+import * as _143 from "./upgrade/v1beta1/tx.rpc.msg";
+import * as _144 from "./vesting/v1beta1/tx.rpc.msg";
 export declare namespace cosmos {
     namespace app {
         const v1alpha1: {
+            QueryClientImpl: typeof _113.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                config(request?: _4.QueryConfigRequest): Promise<_4.QueryConfigResponse>;
+            };
             QueryConfigRequest: {
                 encode(_: _4.QueryConfigRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _4.QueryConfigRequest;
@@ -186,7 +205,16 @@ export declare namespace cosmos {
     }
     namespace auth {
         const v1beta1: {
-            LCDQueryClient: typeof _113.LCDQueryClient;
+            QueryClientImpl: typeof _114.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                accounts(request?: _7.QueryAccountsRequest): Promise<_7.QueryAccountsResponse>;
+                account(request: _7.QueryAccountRequest): Promise<_7.QueryAccountResponse>;
+                params(request?: _7.QueryParamsRequest): Promise<_7.QueryParamsResponse>;
+                moduleAccounts(request?: _7.QueryModuleAccountsRequest): Promise<_7.QueryModuleAccountsResponse>;
+                bech32Prefix(request?: _7.Bech32PrefixRequest): Promise<_7.Bech32PrefixResponse>;
+                addressBytesToString(request: _7.AddressBytesToStringRequest): Promise<_7.AddressBytesToStringResponse>;
+                addressStringToBytes(request: _7.AddressStringToBytesRequest): Promise<_7.AddressStringToBytesResponse>;
+            };
             QueryAccountsRequest: {
                 encode(message: _7.QueryAccountsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _7.QueryAccountsRequest;
@@ -366,7 +394,13 @@ export declare namespace cosmos {
     }
     namespace authz {
         const v1beta1: {
-            LCDQueryClient: typeof _114.LCDQueryClient;
+            MsgClientImpl: typeof _131.MsgClientImpl;
+            QueryClientImpl: typeof _115.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                grants(request: _11.QueryGrantsRequest): Promise<_11.QueryGrantsResponse>;
+                granterGrants(request: _11.QueryGranterGrantsRequest): Promise<_11.QueryGranterGrantsResponse>;
+                granteeGrants(request: _11.QueryGranteeGrantsRequest): Promise<_11.QueryGranteeGrantsResponse>;
+            };
             MsgGrant: {
                 encode(message: _12.MsgGrant, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _12.MsgGrant;
@@ -593,7 +627,19 @@ export declare namespace cosmos {
     }
     namespace bank {
         const v1beta1: {
-            LCDQueryClient: typeof _115.LCDQueryClient;
+            MsgClientImpl: typeof _132.MsgClientImpl;
+            QueryClientImpl: typeof _116.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                balance(request: _16.QueryBalanceRequest): Promise<_16.QueryBalanceResponse>;
+                allBalances(request: _16.QueryAllBalancesRequest): Promise<_16.QueryAllBalancesResponse>;
+                spendableBalances(request: _16.QuerySpendableBalancesRequest): Promise<_16.QuerySpendableBalancesResponse>;
+                totalSupply(request?: _16.QueryTotalSupplyRequest): Promise<_16.QueryTotalSupplyResponse>;
+                supplyOf(request: _16.QuerySupplyOfRequest): Promise<_16.QuerySupplyOfResponse>;
+                params(request?: _16.QueryParamsRequest): Promise<_16.QueryParamsResponse>;
+                denomMetadata(request: _16.QueryDenomMetadataRequest): Promise<_16.QueryDenomMetadataResponse>;
+                denomsMetadata(request?: _16.QueryDenomsMetadataRequest): Promise<_16.QueryDenomsMetadataResponse>;
+                denomOwners(request: _16.QueryDenomOwnersRequest): Promise<_16.QueryDenomOwnersResponse>;
+            };
             MsgSend: {
                 encode(message: _17.MsgSend, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _17.MsgSend;
@@ -1732,7 +1778,15 @@ export declare namespace cosmos {
         }
         namespace tendermint {
             const v1beta1: {
-                LCDQueryClient: typeof _116.LCDQueryClient;
+                ServiceClientImpl: typeof _117.ServiceClientImpl;
+                createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                    getNodeInfo(request?: _26.GetNodeInfoRequest): Promise<_26.GetNodeInfoResponse>;
+                    getSyncing(request?: _26.GetSyncingRequest): Promise<_26.GetSyncingResponse>;
+                    getLatestBlock(request?: _26.GetLatestBlockRequest): Promise<_26.GetLatestBlockResponse>;
+                    getBlockByHeight(request: _26.GetBlockByHeightRequest): Promise<_26.GetBlockByHeightResponse>;
+                    getLatestValidatorSet(request?: _26.GetLatestValidatorSetRequest): Promise<_26.GetLatestValidatorSetResponse>;
+                    getValidatorSetByHeight(request: _26.GetValidatorSetByHeightRequest): Promise<_26.GetValidatorSetByHeightResponse>;
+                };
                 GetValidatorSetByHeightRequest: {
                     encode(message: _26.GetValidatorSetByHeightRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                     decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _26.GetValidatorSetByHeightRequest;
@@ -2365,6 +2419,7 @@ export declare namespace cosmos {
     }
     namespace crisis {
         const v1beta1: {
+            MsgClientImpl: typeof _133.MsgClientImpl;
             MsgVerifyInvariant: {
                 encode(message: _31.MsgVerifyInvariant, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _31.MsgVerifyInvariant;
@@ -2538,7 +2593,19 @@ export declare namespace cosmos {
     }
     namespace distribution {
         const v1beta1: {
-            LCDQueryClient: typeof _117.LCDQueryClient;
+            MsgClientImpl: typeof _134.MsgClientImpl;
+            QueryClientImpl: typeof _118.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                params(request?: _40.QueryParamsRequest): Promise<_40.QueryParamsResponse>;
+                validatorOutstandingRewards(request: _40.QueryValidatorOutstandingRewardsRequest): Promise<_40.QueryValidatorOutstandingRewardsResponse>;
+                validatorCommission(request: _40.QueryValidatorCommissionRequest): Promise<_40.QueryValidatorCommissionResponse>;
+                validatorSlashes(request: _40.QueryValidatorSlashesRequest): Promise<_40.QueryValidatorSlashesResponse>;
+                delegationRewards(request: _40.QueryDelegationRewardsRequest): Promise<_40.QueryDelegationRewardsResponse>;
+                delegationTotalRewards(request: _40.QueryDelegationTotalRewardsRequest): Promise<_40.QueryDelegationTotalRewardsResponse>;
+                delegatorValidators(request: _40.QueryDelegatorValidatorsRequest): Promise<_40.QueryDelegatorValidatorsResponse>;
+                delegatorWithdrawAddress(request: _40.QueryDelegatorWithdrawAddressRequest): Promise<_40.QueryDelegatorWithdrawAddressResponse>;
+                communityPool(request?: _40.QueryCommunityPoolRequest): Promise<_40.QueryCommunityPoolResponse>;
+            };
             MsgSetWithdrawAddress: {
                 encode(message: _41.MsgSetWithdrawAddress, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _41.MsgSetWithdrawAddress;
@@ -3066,7 +3133,12 @@ export declare namespace cosmos {
     }
     namespace evidence {
         const v1beta1: {
-            LCDQueryClient: typeof _118.LCDQueryClient;
+            MsgClientImpl: typeof _135.MsgClientImpl;
+            QueryClientImpl: typeof _119.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                evidence(request: _44.QueryEvidenceRequest): Promise<_44.QueryEvidenceResponse>;
+                allEvidence(request?: _44.QueryAllEvidenceRequest): Promise<_44.QueryAllEvidenceResponse>;
+            };
             MsgSubmitEvidence: {
                 encode(message: _45.MsgSubmitEvidence, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _45.MsgSubmitEvidence;
@@ -3153,7 +3225,13 @@ export declare namespace cosmos {
     }
     namespace feegrant {
         const v1beta1: {
-            LCDQueryClient: typeof _119.LCDQueryClient;
+            MsgClientImpl: typeof _136.MsgClientImpl;
+            QueryClientImpl: typeof _120.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                allowance(request: _48.QueryAllowanceRequest): Promise<_48.QueryAllowanceResponse>;
+                allowances(request: _48.QueryAllowancesRequest): Promise<_48.QueryAllowancesResponse>;
+                allowancesByGranter(request: _48.QueryAllowancesByGranterRequest): Promise<_48.QueryAllowancesByGranterResponse>;
+            };
             MsgGrantAllowance: {
                 encode(message: _49.MsgGrantAllowance, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _49.MsgGrantAllowance;
@@ -3359,7 +3437,18 @@ export declare namespace cosmos {
     }
     namespace gov {
         const v1: {
-            LCDQueryClient: typeof _120.LCDQueryClient;
+            MsgClientImpl: typeof _137.MsgClientImpl;
+            QueryClientImpl: typeof _121.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                proposal(request: _53.QueryProposalRequest): Promise<_53.QueryProposalResponse>;
+                proposals(request: _53.QueryProposalsRequest): Promise<_53.QueryProposalsResponse>;
+                vote(request: _53.QueryVoteRequest): Promise<_53.QueryVoteResponse>;
+                votes(request: _53.QueryVotesRequest): Promise<_53.QueryVotesResponse>;
+                params(request: _53.QueryParamsRequest): Promise<_53.QueryParamsResponse>;
+                deposit(request: _53.QueryDepositRequest): Promise<_53.QueryDepositResponse>;
+                deposits(request: _53.QueryDepositsRequest): Promise<_53.QueryDepositsResponse>;
+                tallyResult(request: _53.QueryTallyResultRequest): Promise<_53.QueryTallyResultResponse>;
+            };
             MsgSubmitProposal: {
                 encode(message: _54.MsgSubmitProposal, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _54.MsgSubmitProposal;
@@ -3878,7 +3967,18 @@ export declare namespace cosmos {
             };
         };
         const v1beta1: {
-            LCDQueryClient: typeof _121.LCDQueryClient;
+            MsgClientImpl: typeof _138.MsgClientImpl;
+            QueryClientImpl: typeof _122.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                proposal(request: _57.QueryProposalRequest): Promise<_57.QueryProposalResponse>;
+                proposals(request: _57.QueryProposalsRequest): Promise<_57.QueryProposalsResponse>;
+                vote(request: _57.QueryVoteRequest): Promise<_57.QueryVoteResponse>;
+                votes(request: _57.QueryVotesRequest): Promise<_57.QueryVotesResponse>;
+                params(request: _57.QueryParamsRequest): Promise<_57.QueryParamsResponse>;
+                deposit(request: _57.QueryDepositRequest): Promise<_57.QueryDepositResponse>;
+                deposits(request: _57.QueryDepositsRequest): Promise<_57.QueryDepositsResponse>;
+                tallyResult(request: _57.QueryTallyResultRequest): Promise<_57.QueryTallyResultResponse>;
+            };
             MsgSubmitProposal: {
                 encode(message: _58.MsgSubmitProposal, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _58.MsgSubmitProposal;
@@ -4384,7 +4484,23 @@ export declare namespace cosmos {
     }
     namespace group {
         const v1: {
-            LCDQueryClient: typeof _122.LCDQueryClient;
+            MsgClientImpl: typeof _139.MsgClientImpl;
+            QueryClientImpl: typeof _123.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                groupInfo(request: _61.QueryGroupInfoRequest): Promise<_61.QueryGroupInfoResponse>;
+                groupPolicyInfo(request: _61.QueryGroupPolicyInfoRequest): Promise<_61.QueryGroupPolicyInfoResponse>;
+                groupMembers(request: _61.QueryGroupMembersRequest): Promise<_61.QueryGroupMembersResponse>;
+                groupsByAdmin(request: _61.QueryGroupsByAdminRequest): Promise<_61.QueryGroupsByAdminResponse>;
+                groupPoliciesByGroup(request: _61.QueryGroupPoliciesByGroupRequest): Promise<_61.QueryGroupPoliciesByGroupResponse>;
+                groupPoliciesByAdmin(request: _61.QueryGroupPoliciesByAdminRequest): Promise<_61.QueryGroupPoliciesByAdminResponse>;
+                proposal(request: _61.QueryProposalRequest): Promise<_61.QueryProposalResponse>;
+                proposalsByGroupPolicy(request: _61.QueryProposalsByGroupPolicyRequest): Promise<_61.QueryProposalsByGroupPolicyResponse>;
+                voteByProposalVoter(request: _61.QueryVoteByProposalVoterRequest): Promise<_61.QueryVoteByProposalVoterResponse>;
+                votesByProposal(request: _61.QueryVotesByProposalRequest): Promise<_61.QueryVotesByProposalResponse>;
+                votesByVoter(request: _61.QueryVotesByVoterRequest): Promise<_61.QueryVotesByVoterResponse>;
+                groupsByMember(request: _61.QueryGroupsByMemberRequest): Promise<_61.QueryGroupsByMemberResponse>;
+                tallyResult(request: _61.QueryTallyResultRequest): Promise<_61.QueryTallyResultResponse>;
+            };
             voteOptionFromJSON(object: any): _63.VoteOption;
             voteOptionToJSON(object: _63.VoteOption): string;
             proposalStatusFromJSON(object: any): _63.ProposalStatus;
@@ -5338,7 +5454,12 @@ export declare namespace cosmos {
     }
     namespace mint {
         const v1beta1: {
-            LCDQueryClient: typeof _123.LCDQueryClient;
+            QueryClientImpl: typeof _124.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                params(request?: _66.QueryParamsRequest): Promise<_66.QueryParamsResponse>;
+                inflation(request?: _66.QueryInflationRequest): Promise<_66.QueryInflationResponse>;
+                annualProvisions(request?: _66.QueryAnnualProvisionsRequest): Promise<_66.QueryAnnualProvisionsResponse>;
+            };
             QueryParamsRequest: {
                 encode(_: _66.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _66.QueryParamsRequest;
@@ -5427,7 +5548,17 @@ export declare namespace cosmos {
     }
     namespace nft {
         const v1beta1: {
-            LCDQueryClient: typeof _124.LCDQueryClient;
+            MsgClientImpl: typeof _140.MsgClientImpl;
+            QueryClientImpl: typeof _125.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                balance(request: _71.QueryBalanceRequest): Promise<_71.QueryBalanceResponse>;
+                owner(request: _71.QueryOwnerRequest): Promise<_71.QueryOwnerResponse>;
+                supply(request: _71.QuerySupplyRequest): Promise<_71.QuerySupplyResponse>;
+                nFTs(request: _71.QueryNFTsRequest): Promise<_71.QueryNFTsResponse>;
+                nFT(request: _71.QueryNFTRequest): Promise<_71.QueryNFTResponse>;
+                class(request: _71.QueryClassRequest): Promise<_71.QueryClassResponse>;
+                classes(request?: _71.QueryClassesRequest): Promise<_71.QueryClassesResponse>;
+            };
             MsgSend: {
                 encode(message: _72.MsgSend, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _72.MsgSend;
@@ -5787,7 +5918,11 @@ export declare namespace cosmos {
     }
     namespace params {
         const v1beta1: {
-            LCDQueryClient: typeof _125.LCDQueryClient;
+            QueryClientImpl: typeof _126.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                params(request: _76.QueryParamsRequest): Promise<_76.QueryParamsResponse>;
+                subspaces(request?: _76.QuerySubspacesRequest): Promise<_76.QuerySubspacesResponse>;
+            };
             QueryParamsRequest: {
                 encode(message: _76.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _76.QueryParamsRequest;
@@ -5856,7 +5991,13 @@ export declare namespace cosmos {
     }
     namespace slashing {
         const v1beta1: {
-            LCDQueryClient: typeof _126.LCDQueryClient;
+            MsgClientImpl: typeof _141.MsgClientImpl;
+            QueryClientImpl: typeof _127.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                params(request?: _78.QueryParamsRequest): Promise<_78.QueryParamsResponse>;
+                signingInfo(request: _78.QuerySigningInfoRequest): Promise<_78.QuerySigningInfoResponse>;
+                signingInfos(request?: _78.QuerySigningInfosRequest): Promise<_78.QuerySigningInfosResponse>;
+            };
             MsgUnjail: {
                 encode(message: _80.MsgUnjail, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _80.MsgUnjail;
@@ -6040,7 +6181,24 @@ export declare namespace cosmos {
     }
     namespace staking {
         const v1beta1: {
-            LCDQueryClient: typeof _127.LCDQueryClient;
+            MsgClientImpl: typeof _142.MsgClientImpl;
+            QueryClientImpl: typeof _128.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                validators(request: _83.QueryValidatorsRequest): Promise<_83.QueryValidatorsResponse>;
+                validator(request: _83.QueryValidatorRequest): Promise<_83.QueryValidatorResponse>;
+                validatorDelegations(request: _83.QueryValidatorDelegationsRequest): Promise<_83.QueryValidatorDelegationsResponse>;
+                validatorUnbondingDelegations(request: _83.QueryValidatorUnbondingDelegationsRequest): Promise<_83.QueryValidatorUnbondingDelegationsResponse>;
+                delegation(request: _83.QueryDelegationRequest): Promise<_83.QueryDelegationResponse>;
+                unbondingDelegation(request: _83.QueryUnbondingDelegationRequest): Promise<_83.QueryUnbondingDelegationResponse>;
+                delegatorDelegations(request: _83.QueryDelegatorDelegationsRequest): Promise<_83.QueryDelegatorDelegationsResponse>;
+                delegatorUnbondingDelegations(request: _83.QueryDelegatorUnbondingDelegationsRequest): Promise<_83.QueryDelegatorUnbondingDelegationsResponse>;
+                redelegations(request: _83.QueryRedelegationsRequest): Promise<_83.QueryRedelegationsResponse>;
+                delegatorValidators(request: _83.QueryDelegatorValidatorsRequest): Promise<_83.QueryDelegatorValidatorsResponse>;
+                delegatorValidator(request: _83.QueryDelegatorValidatorRequest): Promise<_83.QueryDelegatorValidatorResponse>;
+                historicalInfo(request: _83.QueryHistoricalInfoRequest): Promise<_83.QueryHistoricalInfoResponse>;
+                pool(request?: _83.QueryPoolRequest): Promise<_83.QueryPoolResponse>;
+                params(request?: _83.QueryParamsRequest): Promise<_83.QueryParamsResponse>;
+            };
             MsgCreateValidator: {
                 encode(message: _85.MsgCreateValidator, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _85.MsgCreateValidator;
@@ -7205,7 +7363,14 @@ export declare namespace cosmos {
             };
         }
         const v1beta1: {
-            LCDQueryClient: typeof _128.LCDQueryClient;
+            ServiceClientImpl: typeof _129.ServiceClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                simulate(request: _87.SimulateRequest): Promise<_87.SimulateResponse>;
+                getTx(request: _87.GetTxRequest): Promise<_87.GetTxResponse>;
+                broadcastTx(request: _87.BroadcastTxRequest): Promise<_87.BroadcastTxResponse>;
+                getTxsEvent(request: _87.GetTxsEventRequest): Promise<_87.GetTxsEventResponse>;
+                getBlockWithTxs(request: _87.GetBlockWithTxsRequest): Promise<_87.GetBlockWithTxsResponse>;
+            };
             Tx: {
                 encode(message: _88.Tx, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _88.Tx;
@@ -8100,7 +8265,15 @@ export declare namespace cosmos {
     }
     namespace upgrade {
         const v1beta1: {
-            LCDQueryClient: typeof _129.LCDQueryClient;
+            MsgClientImpl: typeof _143.MsgClientImpl;
+            QueryClientImpl: typeof _130.QueryClientImpl;
+            createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+                currentPlan(request?: _89.QueryCurrentPlanRequest): Promise<_89.QueryCurrentPlanResponse>;
+                appliedPlan(request: _89.QueryAppliedPlanRequest): Promise<_89.QueryAppliedPlanResponse>;
+                upgradedConsensusState(request: _89.QueryUpgradedConsensusStateRequest): Promise<_89.QueryUpgradedConsensusStateResponse>;
+                moduleVersions(request: _89.QueryModuleVersionsRequest): Promise<_89.QueryModuleVersionsResponse>;
+                authority(request?: _89.QueryAuthorityRequest): Promise<_89.QueryAuthorityResponse>;
+            };
             Plan: {
                 encode(message: _91.Plan, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _91.Plan;
@@ -8265,6 +8438,7 @@ export declare namespace cosmos {
     }
     namespace vesting {
         const v1beta1: {
+            MsgClientImpl: typeof _144.MsgClientImpl;
             BaseVestingAccount: {
                 encode(message: _93.BaseVestingAccount, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
                 decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _93.BaseVestingAccount;
@@ -8493,60 +8667,235 @@ export declare namespace cosmos {
         };
     }
     const ClientFactory: {
-        createLCDClient: ({ restEndpoint }: {
-            restEndpoint: string;
+        createRPCMsgClient: ({ rpc }: {
+            rpc: import("../helpers").Rpc;
         }) => Promise<{
             cosmos: {
-                auth: {
-                    v1beta1: _113.LCDQueryClient;
-                };
                 authz: {
-                    v1beta1: _114.LCDQueryClient;
+                    v1beta1: _131.MsgClientImpl;
                 };
                 bank: {
-                    v1beta1: _115.LCDQueryClient;
+                    v1beta1: _132.MsgClientImpl;
+                };
+                crisis: {
+                    v1beta1: _133.MsgClientImpl;
+                };
+                distribution: {
+                    v1beta1: _134.MsgClientImpl;
+                };
+                evidence: {
+                    v1beta1: _135.MsgClientImpl;
+                };
+                feegrant: {
+                    v1beta1: _136.MsgClientImpl;
+                };
+                gov: {
+                    v1: _137.MsgClientImpl;
+                    v1beta1: _138.MsgClientImpl;
+                };
+                group: {
+                    v1: _139.MsgClientImpl;
+                };
+                nft: {
+                    v1beta1: _140.MsgClientImpl;
+                };
+                slashing: {
+                    v1beta1: _141.MsgClientImpl;
+                };
+                staking: {
+                    v1beta1: _142.MsgClientImpl;
+                };
+                upgrade: {
+                    v1beta1: _143.MsgClientImpl;
+                };
+                vesting: {
+                    v1beta1: _144.MsgClientImpl;
+                };
+            };
+        }>;
+        createRPCQueryClient: ({ rpcEndpoint }: {
+            rpcEndpoint: string | import("@cosmjs/tendermint-rpc").HttpEndpoint;
+        }) => Promise<{
+            cosmos: {
+                app: {
+                    v1alpha1: {
+                        config(request?: _4.QueryConfigRequest): Promise<_4.QueryConfigResponse>;
+                    };
+                };
+                auth: {
+                    v1beta1: {
+                        accounts(request?: _7.QueryAccountsRequest): Promise<_7.QueryAccountsResponse>;
+                        account(request: _7.QueryAccountRequest): Promise<_7.QueryAccountResponse>;
+                        params(request?: _7.QueryParamsRequest): Promise<_7.QueryParamsResponse>;
+                        moduleAccounts(request?: _7.QueryModuleAccountsRequest): Promise<_7.QueryModuleAccountsResponse>;
+                        bech32Prefix(request?: _7.Bech32PrefixRequest): Promise<_7.Bech32PrefixResponse>;
+                        addressBytesToString(request: _7.AddressBytesToStringRequest): Promise<_7.AddressBytesToStringResponse>;
+                        addressStringToBytes(request: _7.AddressStringToBytesRequest): Promise<_7.AddressStringToBytesResponse>;
+                    };
+                };
+                authz: {
+                    v1beta1: {
+                        grants(request: _11.QueryGrantsRequest): Promise<_11.QueryGrantsResponse>;
+                        granterGrants(request: _11.QueryGranterGrantsRequest): Promise<_11.QueryGranterGrantsResponse>;
+                        granteeGrants(request: _11.QueryGranteeGrantsRequest): Promise<_11.QueryGranteeGrantsResponse>;
+                    };
+                };
+                bank: {
+                    v1beta1: {
+                        balance(request: _16.QueryBalanceRequest): Promise<_16.QueryBalanceResponse>;
+                        allBalances(request: _16.QueryAllBalancesRequest): Promise<_16.QueryAllBalancesResponse>;
+                        spendableBalances(request: _16.QuerySpendableBalancesRequest): Promise<_16.QuerySpendableBalancesResponse>;
+                        totalSupply(request?: _16.QueryTotalSupplyRequest): Promise<_16.QueryTotalSupplyResponse>;
+                        supplyOf(request: _16.QuerySupplyOfRequest): Promise<_16.QuerySupplyOfResponse>;
+                        params(request?: _16.QueryParamsRequest): Promise<_16.QueryParamsResponse>;
+                        denomMetadata(request: _16.QueryDenomMetadataRequest): Promise<_16.QueryDenomMetadataResponse>;
+                        denomsMetadata(request?: _16.QueryDenomsMetadataRequest): Promise<_16.QueryDenomsMetadataResponse>;
+                        denomOwners(request: _16.QueryDenomOwnersRequest): Promise<_16.QueryDenomOwnersResponse>;
+                    };
                 };
                 base: {
                     tendermint: {
-                        v1beta1: _116.LCDQueryClient;
+                        v1beta1: {
+                            getNodeInfo(request?: _26.GetNodeInfoRequest): Promise<_26.GetNodeInfoResponse>;
+                            getSyncing(request?: _26.GetSyncingRequest): Promise<_26.GetSyncingResponse>;
+                            getLatestBlock(request?: _26.GetLatestBlockRequest): Promise<_26.GetLatestBlockResponse>;
+                            getBlockByHeight(request: _26.GetBlockByHeightRequest): Promise<_26.GetBlockByHeightResponse>;
+                            getLatestValidatorSet(request?: _26.GetLatestValidatorSetRequest): Promise<_26.GetLatestValidatorSetResponse>;
+                            getValidatorSetByHeight(request: _26.GetValidatorSetByHeightRequest): Promise<_26.GetValidatorSetByHeightResponse>;
+                        };
                     };
                 };
                 distribution: {
-                    v1beta1: _117.LCDQueryClient;
+                    v1beta1: {
+                        params(request?: _40.QueryParamsRequest): Promise<_40.QueryParamsResponse>;
+                        validatorOutstandingRewards(request: _40.QueryValidatorOutstandingRewardsRequest): Promise<_40.QueryValidatorOutstandingRewardsResponse>;
+                        validatorCommission(request: _40.QueryValidatorCommissionRequest): Promise<_40.QueryValidatorCommissionResponse>;
+                        validatorSlashes(request: _40.QueryValidatorSlashesRequest): Promise<_40.QueryValidatorSlashesResponse>;
+                        delegationRewards(request: _40.QueryDelegationRewardsRequest): Promise<_40.QueryDelegationRewardsResponse>;
+                        delegationTotalRewards(request: _40.QueryDelegationTotalRewardsRequest): Promise<_40.QueryDelegationTotalRewardsResponse>;
+                        delegatorValidators(request: _40.QueryDelegatorValidatorsRequest): Promise<_40.QueryDelegatorValidatorsResponse>;
+                        delegatorWithdrawAddress(request: _40.QueryDelegatorWithdrawAddressRequest): Promise<_40.QueryDelegatorWithdrawAddressResponse>;
+                        communityPool(request?: _40.QueryCommunityPoolRequest): Promise<_40.QueryCommunityPoolResponse>;
+                    };
                 };
                 evidence: {
-                    v1beta1: _118.LCDQueryClient;
+                    v1beta1: {
+                        evidence(request: _44.QueryEvidenceRequest): Promise<_44.QueryEvidenceResponse>;
+                        allEvidence(request?: _44.QueryAllEvidenceRequest): Promise<_44.QueryAllEvidenceResponse>;
+                    };
                 };
                 feegrant: {
-                    v1beta1: _119.LCDQueryClient;
+                    v1beta1: {
+                        allowance(request: _48.QueryAllowanceRequest): Promise<_48.QueryAllowanceResponse>;
+                        allowances(request: _48.QueryAllowancesRequest): Promise<_48.QueryAllowancesResponse>;
+                        allowancesByGranter(request: _48.QueryAllowancesByGranterRequest): Promise<_48.QueryAllowancesByGranterResponse>;
+                    };
                 };
                 gov: {
-                    v1: _120.LCDQueryClient;
-                    v1beta1: _121.LCDQueryClient;
+                    v1: {
+                        proposal(request: _53.QueryProposalRequest): Promise<_53.QueryProposalResponse>;
+                        proposals(request: _53.QueryProposalsRequest): Promise<_53.QueryProposalsResponse>;
+                        vote(request: _53.QueryVoteRequest): Promise<_53.QueryVoteResponse>;
+                        votes(request: _53.QueryVotesRequest): Promise<_53.QueryVotesResponse>;
+                        params(request: _53.QueryParamsRequest): Promise<_53.QueryParamsResponse>;
+                        deposit(request: _53.QueryDepositRequest): Promise<_53.QueryDepositResponse>;
+                        deposits(request: _53.QueryDepositsRequest): Promise<_53.QueryDepositsResponse>;
+                        tallyResult(request: _53.QueryTallyResultRequest): Promise<_53.QueryTallyResultResponse>;
+                    };
+                    v1beta1: {
+                        proposal(request: _57.QueryProposalRequest): Promise<_57.QueryProposalResponse>;
+                        proposals(request: _57.QueryProposalsRequest): Promise<_57.QueryProposalsResponse>;
+                        vote(request: _57.QueryVoteRequest): Promise<_57.QueryVoteResponse>;
+                        votes(request: _57.QueryVotesRequest): Promise<_57.QueryVotesResponse>;
+                        params(request: _57.QueryParamsRequest): Promise<_57.QueryParamsResponse>;
+                        deposit(request: _57.QueryDepositRequest): Promise<_57.QueryDepositResponse>;
+                        deposits(request: _57.QueryDepositsRequest): Promise<_57.QueryDepositsResponse>;
+                        tallyResult(request: _57.QueryTallyResultRequest): Promise<_57.QueryTallyResultResponse>;
+                    };
                 };
                 group: {
-                    v1: _122.LCDQueryClient;
+                    v1: {
+                        groupInfo(request: _61.QueryGroupInfoRequest): Promise<_61.QueryGroupInfoResponse>;
+                        groupPolicyInfo(request: _61.QueryGroupPolicyInfoRequest): Promise<_61.QueryGroupPolicyInfoResponse>;
+                        groupMembers(request: _61.QueryGroupMembersRequest): Promise<_61.QueryGroupMembersResponse>;
+                        groupsByAdmin(request: _61.QueryGroupsByAdminRequest): Promise<_61.QueryGroupsByAdminResponse>;
+                        groupPoliciesByGroup(request: _61.QueryGroupPoliciesByGroupRequest): Promise<_61.QueryGroupPoliciesByGroupResponse>;
+                        groupPoliciesByAdmin(request: _61.QueryGroupPoliciesByAdminRequest): Promise<_61.QueryGroupPoliciesByAdminResponse>;
+                        proposal(request: _61.QueryProposalRequest): Promise<_61.QueryProposalResponse>;
+                        proposalsByGroupPolicy(request: _61.QueryProposalsByGroupPolicyRequest): Promise<_61.QueryProposalsByGroupPolicyResponse>;
+                        voteByProposalVoter(request: _61.QueryVoteByProposalVoterRequest): Promise<_61.QueryVoteByProposalVoterResponse>;
+                        votesByProposal(request: _61.QueryVotesByProposalRequest): Promise<_61.QueryVotesByProposalResponse>;
+                        votesByVoter(request: _61.QueryVotesByVoterRequest): Promise<_61.QueryVotesByVoterResponse>;
+                        groupsByMember(request: _61.QueryGroupsByMemberRequest): Promise<_61.QueryGroupsByMemberResponse>;
+                        tallyResult(request: _61.QueryTallyResultRequest): Promise<_61.QueryTallyResultResponse>;
+                    };
                 };
                 mint: {
-                    v1beta1: _123.LCDQueryClient;
+                    v1beta1: {
+                        params(request?: _66.QueryParamsRequest): Promise<_66.QueryParamsResponse>;
+                        inflation(request?: _66.QueryInflationRequest): Promise<_66.QueryInflationResponse>;
+                        annualProvisions(request?: _66.QueryAnnualProvisionsRequest): Promise<_66.QueryAnnualProvisionsResponse>;
+                    };
                 };
                 nft: {
-                    v1beta1: _124.LCDQueryClient;
+                    v1beta1: {
+                        balance(request: _71.QueryBalanceRequest): Promise<_71.QueryBalanceResponse>;
+                        owner(request: _71.QueryOwnerRequest): Promise<_71.QueryOwnerResponse>;
+                        supply(request: _71.QuerySupplyRequest): Promise<_71.QuerySupplyResponse>;
+                        nFTs(request: _71.QueryNFTsRequest): Promise<_71.QueryNFTsResponse>;
+                        nFT(request: _71.QueryNFTRequest): Promise<_71.QueryNFTResponse>;
+                        class(request: _71.QueryClassRequest): Promise<_71.QueryClassResponse>;
+                        classes(request?: _71.QueryClassesRequest): Promise<_71.QueryClassesResponse>;
+                    };
                 };
                 params: {
-                    v1beta1: _125.LCDQueryClient;
+                    v1beta1: {
+                        params(request: _76.QueryParamsRequest): Promise<_76.QueryParamsResponse>;
+                        subspaces(request?: _76.QuerySubspacesRequest): Promise<_76.QuerySubspacesResponse>;
+                    };
                 };
                 slashing: {
-                    v1beta1: _126.LCDQueryClient;
+                    v1beta1: {
+                        params(request?: _78.QueryParamsRequest): Promise<_78.QueryParamsResponse>;
+                        signingInfo(request: _78.QuerySigningInfoRequest): Promise<_78.QuerySigningInfoResponse>;
+                        signingInfos(request?: _78.QuerySigningInfosRequest): Promise<_78.QuerySigningInfosResponse>;
+                    };
                 };
                 staking: {
-                    v1beta1: _127.LCDQueryClient;
+                    v1beta1: {
+                        validators(request: _83.QueryValidatorsRequest): Promise<_83.QueryValidatorsResponse>;
+                        validator(request: _83.QueryValidatorRequest): Promise<_83.QueryValidatorResponse>;
+                        validatorDelegations(request: _83.QueryValidatorDelegationsRequest): Promise<_83.QueryValidatorDelegationsResponse>;
+                        validatorUnbondingDelegations(request: _83.QueryValidatorUnbondingDelegationsRequest): Promise<_83.QueryValidatorUnbondingDelegationsResponse>;
+                        delegation(request: _83.QueryDelegationRequest): Promise<_83.QueryDelegationResponse>;
+                        unbondingDelegation(request: _83.QueryUnbondingDelegationRequest): Promise<_83.QueryUnbondingDelegationResponse>;
+                        delegatorDelegations(request: _83.QueryDelegatorDelegationsRequest): Promise<_83.QueryDelegatorDelegationsResponse>;
+                        delegatorUnbondingDelegations(request: _83.QueryDelegatorUnbondingDelegationsRequest): Promise<_83.QueryDelegatorUnbondingDelegationsResponse>;
+                        redelegations(request: _83.QueryRedelegationsRequest): Promise<_83.QueryRedelegationsResponse>;
+                        delegatorValidators(request: _83.QueryDelegatorValidatorsRequest): Promise<_83.QueryDelegatorValidatorsResponse>;
+                        delegatorValidator(request: _83.QueryDelegatorValidatorRequest): Promise<_83.QueryDelegatorValidatorResponse>;
+                        historicalInfo(request: _83.QueryHistoricalInfoRequest): Promise<_83.QueryHistoricalInfoResponse>;
+                        pool(request?: _83.QueryPoolRequest): Promise<_83.QueryPoolResponse>;
+                        params(request?: _83.QueryParamsRequest): Promise<_83.QueryParamsResponse>;
+                    };
                 };
                 tx: {
-                    v1beta1: _128.LCDQueryClient;
+                    v1beta1: {
+                        simulate(request: _87.SimulateRequest): Promise<_87.SimulateResponse>;
+                        getTx(request: _87.GetTxRequest): Promise<_87.GetTxResponse>;
+                        broadcastTx(request: _87.BroadcastTxRequest): Promise<_87.BroadcastTxResponse>;
+                        getTxsEvent(request: _87.GetTxsEventRequest): Promise<_87.GetTxsEventResponse>;
+                        getBlockWithTxs(request: _87.GetBlockWithTxsRequest): Promise<_87.GetBlockWithTxsResponse>;
+                    };
                 };
                 upgrade: {
-                    v1beta1: _129.LCDQueryClient;
+                    v1beta1: {
+                        currentPlan(request?: _89.QueryCurrentPlanRequest): Promise<_89.QueryCurrentPlanResponse>;
+                        appliedPlan(request: _89.QueryAppliedPlanRequest): Promise<_89.QueryAppliedPlanResponse>;
+                        upgradedConsensusState(request: _89.QueryUpgradedConsensusStateRequest): Promise<_89.QueryUpgradedConsensusStateResponse>;
+                        moduleVersions(request: _89.QueryModuleVersionsRequest): Promise<_89.QueryModuleVersionsResponse>;
+                        authority(request?: _89.QueryAuthorityRequest): Promise<_89.QueryAuthorityResponse>;
+                    };
                 };
             };
         }>;

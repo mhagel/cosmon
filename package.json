@@ -1,12 +1,13 @@
 {
   "name": "@mhagel/cosmon",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Cosmos SDK TS modules",
   "author": "Mark Hagelberg <mark.hagelberg@gmail.com>",
   "homepage": "https://github.com/mhagel/cosmon#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "main/index.js",
   "module": "module/index.js",
+  "types": "types/index.d.ts",
   "typings": "types/index.d.ts",
   "directories": {
     "lib": "src",
@@ -79,6 +80,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.19.4",
+    "@cosmjs/stargate": "^0.30.1",
+    "@cosmjs/tendermint-rpc": "^0.30.1",
     "@osmonauts/lcd": "^0.10.0",
     "protobufjs": "^6.11.2"
   }
