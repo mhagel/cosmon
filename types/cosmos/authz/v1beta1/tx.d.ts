@@ -1,7 +1,6 @@
 import { Grant, GrantSDKType } from "./authz";
 import { Any, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../../helpers";
 /**
  * MsgGrant is a request type for Grant method. It declares authorization to the grantee
  * on behalf of the granter with the provided expiration time.
@@ -49,6 +48,11 @@ export interface MsgExec {
  */
 export interface MsgExecSDKType {
     grantee: string;
+    /**
+     * Authorization Msg requests to execute. Each msg must implement Authorization interface
+     * The x/authz will try to find a grant matching (msg.signers[0], grantee, MsgTypeURL(msg))
+     * triple and validate it.
+     */
     msgs: AnySDKType[];
 }
 /** MsgGrantResponse defines the Msg/MsgGrant response type. */
@@ -84,30 +88,42 @@ export interface MsgRevokeResponseSDKType {
 export declare const MsgGrant: {
     encode(message: MsgGrant, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgGrant;
-    fromPartial(object: DeepPartial<MsgGrant>): MsgGrant;
+    fromJSON(object: any): MsgGrant;
+    toJSON(message: MsgGrant): unknown;
+    fromPartial(object: Partial<MsgGrant>): MsgGrant;
 };
 export declare const MsgExecResponse: {
     encode(message: MsgExecResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgExecResponse;
-    fromPartial(object: DeepPartial<MsgExecResponse>): MsgExecResponse;
+    fromJSON(object: any): MsgExecResponse;
+    toJSON(message: MsgExecResponse): unknown;
+    fromPartial(object: Partial<MsgExecResponse>): MsgExecResponse;
 };
 export declare const MsgExec: {
     encode(message: MsgExec, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgExec;
-    fromPartial(object: DeepPartial<MsgExec>): MsgExec;
+    fromJSON(object: any): MsgExec;
+    toJSON(message: MsgExec): unknown;
+    fromPartial(object: Partial<MsgExec>): MsgExec;
 };
 export declare const MsgGrantResponse: {
     encode(_: MsgGrantResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgGrantResponse;
-    fromPartial(_: DeepPartial<MsgGrantResponse>): MsgGrantResponse;
+    fromJSON(_: any): MsgGrantResponse;
+    toJSON(_: MsgGrantResponse): unknown;
+    fromPartial(_: Partial<MsgGrantResponse>): MsgGrantResponse;
 };
 export declare const MsgRevoke: {
     encode(message: MsgRevoke, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgRevoke;
-    fromPartial(object: DeepPartial<MsgRevoke>): MsgRevoke;
+    fromJSON(object: any): MsgRevoke;
+    toJSON(message: MsgRevoke): unknown;
+    fromPartial(object: Partial<MsgRevoke>): MsgRevoke;
 };
 export declare const MsgRevokeResponse: {
     encode(_: MsgRevokeResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgRevokeResponse;
-    fromPartial(_: DeepPartial<MsgRevokeResponse>): MsgRevokeResponse;
+    fromJSON(_: any): MsgRevokeResponse;
+    toJSON(_: MsgRevokeResponse): unknown;
+    fromPartial(_: Partial<MsgRevokeResponse>): MsgRevokeResponse;
 };
